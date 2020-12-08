@@ -1,12 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import ButtonComponent from "../../global/components/button/button.component";
 import imgSrc from "../../assets/images/right-arrow.png";
 import "../base/base.component.css";
 import OrderContext from "../../contexts/order_context/order.context";
 
 export default function BaseComponent(props) {
-  const [state, dispatch] = useContext(OrderContext);
-  console.log("base:", dispatch)
+  const dispatch = useContext(OrderContext)[1];
   const baseOptions = ["Classic", "Thin & Crispy", "Thick Crust"];
 
   const [option, setOption] = useState();

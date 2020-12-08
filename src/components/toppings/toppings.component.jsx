@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import ButtonComponent from "../../global/components/button/button.component";
 import imgSrc from "../../assets/images/right-arrow.png";
 import "../toppings/toppings.component.css";

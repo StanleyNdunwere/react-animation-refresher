@@ -22,7 +22,7 @@ function App() {
       case "UPDATE_ACTION":
         return { ...state, option: action.payload }
       case "UPDATE_TOPPINGS":
-        return { ...state, toppings: [... action.payload] }
+        return { ...state, toppings: [...action.payload] }
       default:
         return state;
     }

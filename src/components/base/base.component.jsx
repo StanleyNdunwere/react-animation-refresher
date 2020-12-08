@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ButtonComponent from "../../global/components/button/button.component";
 import imgSrc from "../../assets/images/right-arrow.png";
 import "../base/base.component.css";
@@ -10,13 +10,14 @@ export default function BaseComponent(props) {
 
   let handleClick = (value) => {
     setOption(value);
+    OrderContext.value = { ...OrderContext.value, option: value };
+    console.log(OrderContext.value);
   };
 
   return (
     <div className="base-content">
       <h3 className="base-title">Step 1: Choose Your Base</h3>
       <hr />
-
       {baseOptions.map((baseOption) => {
         return (
           <BaseItem
@@ -40,11 +41,11 @@ export default function BaseComponent(props) {
 }
 
 function BaseItem(props) {
-  const {optionValue, currentOption} = {...props}
+  const { optionValue, currentOption } = { ...props };
   return (
     <div className="base-option" onClick={props.clickOption}>
       {currentOption === optionValue ? (
-        <img alt ="right arrow button" className="img-icon" src={imgSrc} />
+        <img alt="right arrow button" className="img-icon" src={imgSrc} />
       ) : (
         <span></span>
       )}

@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ButtonComponent from "../../global/components/button/button.component";
 import imgSrc from "../../assets/images/right-arrow.png";
 import "../base/base.component.css";
 import OrderContext from "../../contexts/order_context/order.context";
 
 export default function BaseComponent(props) {
+  const orderContext = useContext(OrderContext);
   const baseOptions = ["Classic", "Thin & Crispy", "Thick Crust"];
+  console.log("use context", orderContext);
   const [option, setOption] = useState();
 
-  let handleClick = (value) => {
+  let handleClick = (value, context) => {
     setOption(value);
-    OrderContext.value = { ...OrderContext.value, option: value };
-    console.log(OrderContext.value);
+    context.option = {...context.option, option: value };
   };
 
   return (
@@ -23,9 +24,9 @@ export default function BaseComponent(props) {
           <BaseItem
             key={baseOption}
             optionValue={baseOption}
-            clickOption={() => handleClick(baseOption)}
+            clickOption={() => handleClick(baseOption, orderContext)}
             currentOption={option}
-          ></BaseItem>
+          />
         );
       })}
 

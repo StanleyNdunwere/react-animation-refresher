@@ -1,25 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ButtonComponent from "../../global/components/button/button.component";
 import imgSrc from "../../assets/images/right-arrow.png";
 import "../toppings/toppings.component.css";
 import OrderContext from "../../contexts/order_context/order.context";
 
 export default function ToppingsComponent(props) {
+  const orderContext = useContext(OrderContext);
   const [toppingValue, setToppingValue] = useState([]);
 
-  let handleClick = (value, toppingValue, Context) => {
+  let handleClick = (value, toppingValue, context) => {
     if (toppingValue.includes(value)) {
       let newToppingsList = toppingValue.filter((topping) => {
         return topping !== value;
       });
       setToppingValue(newToppingsList);
-      Context.value = { ...Context.value, toppings: newToppingsList };
+      context = { ...context, toppings: newToppingsList };
     } else {
       setToppingValue([...toppingValue, value]);
-      Context.value = { ...Context.value, toppings: [...toppingValue, value] };
+      context = {
+        ...context,
+        toppings: [...toppingValue, value],
+      };
     }
-    // console.log(Context);
+    console.log("the context changed", context);
   };
+
   const toppingsOptions = [
     "mushrooms",
     "peppers",
@@ -28,6 +33,7 @@ export default function ToppingsComponent(props) {
     "extra cheese",
     "tomatoes",
   ];
+
   return (
     <div className="base-content">
       <h3 className="base-title">Step 2: Choose Toppings</h3>
@@ -37,12 +43,13 @@ export default function ToppingsComponent(props) {
           <BaseItem
             key={topping}
             optionValue={topping}
-            clickOption={() => handleClick(topping, toppingValue, OrderContext)}
+            clickOption={() => handleClick(topping, toppingValue, orderContext)}
             toppingsList={toppingValue}
           />
         );
       })}
       <br />
+
       <ButtonComponent
         {...props}
         execFunction={null}

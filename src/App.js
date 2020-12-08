@@ -10,7 +10,7 @@ import { OrderProvider } from './contexts/order_context/order.context';
 function App() {
 
   return (
-    <OrderProvider value={{}}>
+    <OrderProvider value={{ option: "", toppings: [] }} >
       <div className="App">
         <header className="App-header">
           <div className="logo-text-container">
@@ -30,7 +30,7 @@ function App() {
           </Switch>
         </div>
       </div>
-    </OrderProvider>
+    </ OrderProvider>
   );
 }
 

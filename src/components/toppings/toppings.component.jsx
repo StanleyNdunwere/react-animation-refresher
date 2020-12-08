@@ -5,24 +5,21 @@ import "../toppings/toppings.component.css";
 import OrderContext from "../../contexts/order_context/order.context";
 
 export default function ToppingsComponent(props) {
-  const orderContext = useContext(OrderContext);
-  const [toppingValue, setToppingValue] = useState([]);
+  const [state, dispatch] = useContext(OrderContext);
 
-  let handleClick = (value, toppingValue, context) => {
-    if (toppingValue.includes(value)) {
-      let newToppingsList = toppingValue.filter((topping) => {
-        return topping !== value;
+  const updateToppings = (newToppings, dispatch) => {
+    dispatch({ type: "UPDATE_TOPPINGS", payload: newToppings })
+  }
+
+  let handleClick = (newTopping, updateToppings, oldToppings, dispatch) => {
+    if (oldToppings.includes(newTopping)) {
+      let newToppingsList = oldToppings.filter((topping) => {
+        return topping !== newTopping;
       });
-      setToppingValue(newToppingsList);
-      context = { ...context, toppings: newToppingsList };
+      updateToppings(newToppingsList, dispatch)
     } else {
-      setToppingValue([...toppingValue, value]);
-      context = {
-        ...context,
-        toppings: [...toppingValue, value],
-      };
+      updateToppings([...oldToppings, newTopping], dispatch);
     }
-    console.log("the context changed", context);
   };
 
   const toppingsOptions = [
@@ -43,8 +40,8 @@ export default function ToppingsComponent(props) {
           <BaseItem
             key={topping}
             optionValue={topping}
-            clickOption={() => handleClick(topping, toppingValue, orderContext)}
-            toppingsList={toppingValue}
+            clickOption={() => handleClick(topping, updateToppings, state.toppings, dispatch)}
+            toppingsList={state.toppings}
           />
         );
       })}
@@ -67,8 +64,8 @@ function BaseItem(props) {
       {toppingsList.includes(optionValue) ? (
         <img alt="right arrow button" className="img-icon" src={imgSrc} />
       ) : (
-        <span></span>
-      )}
+          <span></span>
+        )}
       <span className="option-name">{props.optionValue}</span>
     </div>
   );

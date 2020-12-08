@@ -6,11 +6,31 @@ import BaseComponent from './components/base/base.component';
 import ToppingsComponent from './components/toppings/toppings.component';
 import OrderComponent from './components/order/order.component';
 import { OrderProvider } from './contexts/order_context/order.context';
+import { useReducer } from 'react';
 
 function App() {
 
+
+  let initialState = {
+    option: '',
+    toppings: []
+  }
+
+
+  const reducer = (state = initialState, action) => {
+    switch (action.type) {
+      case "UPDATE_ACTION":
+        return { ...state, option: action.payload }
+      case "UPDATE_TOPPINGS":
+        return { ...state, toppings: [... action.payload] }
+      default:
+        return state;
+    }
+  }
+
+  const [state, dispatch] = useReducer(reducer, initialState)
   return (
-    <OrderProvider value={{ option: "", toppings: [] }} >
+    <OrderProvider value={[state, dispatch]} >
       <div className="App">
         <header className="App-header">
           <div className="logo-text-container">

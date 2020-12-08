@@ -5,14 +5,19 @@ import "../base/base.component.css";
 import OrderContext from "../../contexts/order_context/order.context";
 
 export default function BaseComponent(props) {
-  const orderContext = useContext(OrderContext);
+  const [state, dispatch] = useContext(OrderContext);
+  console.log("base:", dispatch)
   const baseOptions = ["Classic", "Thin & Crispy", "Thick Crust"];
-  console.log("use context", orderContext);
+
   const [option, setOption] = useState();
 
-  let handleClick = (value, context) => {
+  const updateAction = (option, dispatch) => {
+    dispatch({ type: "UPDATE_ACTION", payload: option })
+  }
+
+  let handleClick = (value, dispatch, updateAction) => {
     setOption(value);
-    context.option = {...context.option, option: value };
+    updateAction(value, dispatch);
   };
 
   return (
@@ -24,7 +29,7 @@ export default function BaseComponent(props) {
           <BaseItem
             key={baseOption}
             optionValue={baseOption}
-            clickOption={() => handleClick(baseOption, orderContext)}
+            clickOption={() => handleClick(baseOption, dispatch, updateAction)}
             currentOption={option}
           />
         );
@@ -48,8 +53,8 @@ function BaseItem(props) {
       {currentOption === optionValue ? (
         <img alt="right arrow button" className="img-icon" src={imgSrc} />
       ) : (
-        <span></span>
-      )}
+          <span></span>
+        )}
       <span className="option-name">{props.optionValue}</span>
     </div>
   );

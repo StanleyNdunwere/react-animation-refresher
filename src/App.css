@@ -31,7 +31,13 @@
   align-self: start;
   padding-top: 1.6rem;
 }
+
 .logo-text-container h1 {
+  margin: 0;
+}
+
+.logo-text-container a {
+  text-decoration: none;
   font-size: 1.2rem;
   color: rgb(235, 240, 255);
   font-weight: bold;

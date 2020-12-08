@@ -2,10 +2,10 @@ import React from "react";
 import "../../../global/components/button/button.css";
 
 export default function ButtonComponent(props) {
-  const { content, execFunction, linkTo, ...rest } = { ...props };
+  const { content } = { ...props };
 
   let handleClick = (props) => {
-    const { history, execFunction, linkTo, ...rest } = { ...props };
+    const { history, execFunction, linkTo } = { ...props };
     if (execFunction !== null) {
       execFunction();
     }

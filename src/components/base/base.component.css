@@ -34,7 +34,7 @@
   font-size: 1rem;
   font-weight: 400;
   font-family: "Baloo Da 2", cursive;
-  color: rgb(235, 240, 255);
+  color: rgba(235, 240, 255, 0.747);
 }
 
 .base-content hr {

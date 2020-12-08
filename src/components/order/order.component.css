@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&display=swap");
+
+.order-content {
+  margin-top: 6rem;
+  text-align: center;
+}
+
+.order-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: "Baloo Da 2", cursive;
+  color: rgb(235, 240, 255);
+  margin: 0.5rem auto;
+  padding: 0;
+}
+
+.order-type {
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-family: "Baloo Da 2", cursive;
+  color: rgba(235, 240, 255, 0.747);
+  margin: 0.3rem auto;
+  padding: 0;
+}
+
+.order-extras {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: "Baloo Da 2", cursive;
+  color: rgba(235, 240, 255, 0.747);
+}

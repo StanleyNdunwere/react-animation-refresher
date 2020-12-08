@@ -8,7 +8,7 @@ export default function OrderComponent(props) {
     <div className="order-content">
       <h3 className="order-header-text">Thank you for your order :) </h3>
       <p className="order-type">You ordered a {state.option} pizza with:</p>
-      {/* {console.log("toppings", context.toppings)} */}
+      {/* //https://www.sitepoint.com/replace-redux-react-hooks-context-api/ */}
       {state.toppings.map((topping) => {
         return (
           <p key={topping} className="order-extras">

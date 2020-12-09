@@ -7,6 +7,7 @@ import ToppingsComponent from './components/toppings/toppings.component';
 import OrderComponent from './components/order/order.component';
 import { OrderProvider } from './contexts/order_context/order.context';
 import { useReducer } from 'react';
+import { motion } from 'framer-motion';
 
 function App() {
 
@@ -36,19 +37,34 @@ function App() {
           <div className="logo-text-container">
             <div className="header-image"></div>
             <div className="header-text">
-              <h1><a href="/">Pizza Joint</a></h1>
-              <hr />
+              <motion.h1
+                initial={{ y: -200 }}
+                animate={{ y: -0 }}
+              ><a href="/">Pizza Joint</a></motion.h1>
+              <motion.hr
+                initial={{ y: -200 }} animate={{ y: -0 }}
+              />
             </div>
           </div>
         </header>
-        <div className="content-container">
+        <motion.div
+          className="content-container"
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+          }}
+          transition={{
+            delay: 1.5,
+          }}>
           <Switch>
             <Route exact path="/" component={HomeComponent} />
             <Route exact path="/base" component={BaseComponent} />
             <Route exact path="/toppings" component={ToppingsComponent} />
             <Route exact path="/order" component={OrderComponent} />
           </Switch>
-        </div>
+        </motion.div>
       </div>
     </ OrderProvider>
   );

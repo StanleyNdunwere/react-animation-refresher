@@ -1,14 +1,10 @@
 .content {
-  display: grid;
-  align-self: center;
-  justify-self: center;
   min-width: 20%;
   height: auto;
   width: auto;
   min-height: 70%;
   text-align: center;
   padding: 0.7rem;
-  /* background: green; */
   margin-top: 7rem;
 }
 
@@ -17,6 +13,6 @@
   font-family: "Baloo Da 2", cursive;
   font-weight: 500;
   color: rgb(235, 240, 255);
-  margin: 0.5rem;
+  margin: 0 auto;
+  margin-bottom: 2.5rem;
 }
-

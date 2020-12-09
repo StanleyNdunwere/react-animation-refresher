@@ -1,6 +1,7 @@
 import React from "react";
 import "./home-component.css";
 import ButtonComponent from "../../global/components/button/button.component";
+import { motion } from "framer-motion";
 
 export default function HomeComponent(props) {
   return (

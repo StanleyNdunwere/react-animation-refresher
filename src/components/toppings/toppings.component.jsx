@@ -3,20 +3,21 @@ import ButtonComponent from "../../global/components/button/button.component";
 import imgSrc from "../../assets/images/right-arrow.png";
 import "../toppings/toppings.component.css";
 import OrderContext from "../../contexts/order_context/order.context";
+import { motion } from "framer-motion";
 
 export default function ToppingsComponent(props) {
   const [state, dispatch] = useContext(OrderContext);
 
   const updateToppings = (newToppings, dispatch) => {
-    dispatch({ type: "UPDATE_TOPPINGS", payload: newToppings })
-  }
+    dispatch({ type: "UPDATE_TOPPINGS", payload: newToppings });
+  };
 
   let handleClick = (newTopping, updateToppings, oldToppings, dispatch) => {
     if (oldToppings.includes(newTopping)) {
       let newToppingsList = oldToppings.filter((topping) => {
         return topping !== newTopping;
       });
-      updateToppings(newToppingsList, dispatch)
+      updateToppings(newToppingsList, dispatch);
     } else {
       updateToppings([...oldToppings, newTopping], dispatch);
     }
@@ -40,19 +41,33 @@ export default function ToppingsComponent(props) {
           <BaseItem
             key={topping}
             optionValue={topping}
-            clickOption={() => handleClick(topping, updateToppings, state.toppings, dispatch)}
+            clickOption={() =>
+              handleClick(topping, updateToppings, state.toppings, dispatch)
+            }
             toppingsList={state.toppings}
           />
         );
       })}
       <br />
-
-      <ButtonComponent
-        {...props}
-        execFunction={null}
-        linkTo="/order"
-        content="Next"
-      />
+      {state.toppings.length > 0 ? (
+        <motion.div
+          initial={{
+            x: "-100vw",
+          }}
+          animate={{
+            x: 0,
+          }}
+        >
+          <ButtonComponent
+            {...props}
+            execFunction={null}
+            linkTo="/order"
+            content="Next"
+          />
+        </motion.div>
+      ) : (
+        <span></span>
+      )}
     </div>
   );
 }
@@ -64,8 +79,8 @@ function BaseItem(props) {
       {toppingsList.includes(optionValue) ? (
         <img alt="right arrow button" className="img-icon" src={imgSrc} />
       ) : (
-          <span></span>
-        )}
+        <span></span>
+      )}
       <span className="option-name">{props.optionValue}</span>
     </div>
   );

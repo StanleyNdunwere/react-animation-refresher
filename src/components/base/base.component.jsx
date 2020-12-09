@@ -3,16 +3,17 @@ import ButtonComponent from "../../global/components/button/button.component";
 import imgSrc from "../../assets/images/right-arrow.png";
 import "../base/base.component.css";
 import OrderContext from "../../contexts/order_context/order.context";
+import { motion } from "framer-motion";
 
 export default function BaseComponent(props) {
-  const dispatch = useContext(OrderContext)[1];
+  const [state, dispatch] = useContext(OrderContext);
   const baseOptions = ["Classic", "Thin & Crispy", "Thick Crust"];
 
   const [option, setOption] = useState();
 
   const updateAction = (option, dispatch) => {
-    dispatch({ type: "UPDATE_ACTION", payload: option })
-  }
+    dispatch({ type: "UPDATE_ACTION", payload: option });
+  };
 
   let handleClick = (value, dispatch, updateAction) => {
     setOption(value);
@@ -20,27 +21,44 @@ export default function BaseComponent(props) {
   };
 
   return (
-    <div className="base-content">
-      <h3 className="base-title">Step 1: Choose Your Base</h3>
-      <hr />
-      {baseOptions.map((baseOption) => {
-        return (
-          <BaseItem
-            key={baseOption}
-            optionValue={baseOption}
-            clickOption={() => handleClick(baseOption, dispatch, updateAction)}
-            currentOption={option}
-          />
-        );
-      })}
+    <div className = "base-content-container">
+      <div className="base-content">
+        <h3 className="base-title">Step 1: Choose Your Base</h3>
+        <hr />
+        {baseOptions.map((baseOption) => {
+          return (
+            <BaseItem
+              key={baseOption}
+              optionValue={baseOption}
+              clickOption={() =>
+                handleClick(baseOption, dispatch, updateAction)
+              }
+              currentOption={option}
+            />
+          );
+        })}
 
-      <br />
-      <ButtonComponent
-        {...props}
-        execFunction={null}
-        linkTo="/toppings"
-        content="Next"
-      />
+        <br />
+        {state.option != "" ? (
+          <motion.div
+            initial={{
+              x: "-100vw",
+            }}
+            animate={{
+              x: 0,
+            }}
+          >
+            <ButtonComponent
+              {...props}
+              execFunction={null}
+              linkTo="/toppings"
+              content="Next"
+            />
+          </motion.div>
+        ) : (
+          <span></span>
+        )}
+      </div>
     </div>
   );
 }
@@ -52,8 +70,8 @@ function BaseItem(props) {
       {currentOption === optionValue ? (
         <img alt="right arrow button" className="img-icon" src={imgSrc} />
       ) : (
-          <span></span>
-        )}
+        <span></span>
+      )}
       <span className="option-name">{props.optionValue}</span>
     </div>
   );

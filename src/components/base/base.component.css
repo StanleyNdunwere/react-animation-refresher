@@ -1,9 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&display=swap");
 
-.base-content{
-  margin-top: 6rem;
+.base-content-container{
+  text-align: center;
 }
-
+.base-content {
+  margin: auto;
+  margin-top: 6rem;
+  text-align: left;
+  max-width: 17%;
+  height: auto;
+  width: auto;
+  min-height: 70%;
+  padding: 0.7rem;
+}
 
 .base-option {
   padding: 0.2rem;

@@ -1,5 +1,5 @@
-.button span {
-  margin: 0.5rem;
+.button {
+  /* margin: 0.5rem auto; */
   font-weight: 400;
   font-size: 1.2rem;
   padding: 0.4rem 1.5rem;
@@ -7,6 +7,7 @@
   color: rgba(235, 240, 255, 0.842);
   border: 2px solid rgba(235, 240, 255, 0.719);
   border-radius: 5rem;
+  width: fit-content;
 }
 
 .button:hover {

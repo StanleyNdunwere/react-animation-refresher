@@ -21,8 +21,22 @@ export default function BaseComponent(props) {
   };
 
   return (
-    <div className = "base-content-container">
-      <div className="base-content">
+    <div className="base-content-container">
+      <motion.div
+        initial={{
+          x: "-100vw",
+        }}
+        animate={{
+          x: 0,
+        }}
+        transition={{
+          delay: 0.0,
+          duration: 1,
+          type: "spring",
+          stiffness: 70,
+        }}
+        className="base-content"
+      >
         <h3 className="base-title">Step 1: Choose Your Base</h3>
         <hr />
         {baseOptions.map((baseOption) => {
@@ -47,6 +61,12 @@ export default function BaseComponent(props) {
             animate={{
               x: 0,
             }}
+            transition={{
+              delay: 0.0,
+              duration: 1,
+              type: "spring",
+              stiffness: 70,
+            }}
           >
             <ButtonComponent
               {...props}
@@ -58,7 +78,7 @@ export default function BaseComponent(props) {
         ) : (
           <span></span>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }

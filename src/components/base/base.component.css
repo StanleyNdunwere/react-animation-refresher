@@ -2,6 +2,7 @@
 
 .base-content-container{
   text-align: center;
+  width: 100%;
 }
 .base-content {
   margin: auto;

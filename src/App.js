@@ -40,9 +40,12 @@ function App() {
               <motion.h1
                 initial={{ y: -200 }}
                 animate={{ y: -0 }}
+                transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
               ><a href="/">Pizza Joint</a></motion.h1>
               <motion.hr
-                initial={{ y: -200 }} animate={{ y: -0 }}
+                initial={{ y: -200 }}
+                animate={{ y: -0 }}
+                transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
               />
             </div>
           </div>
@@ -56,7 +59,8 @@ function App() {
             opacity: 1,
           }}
           transition={{
-            delay: 1.5,
+            delay: 0,
+            duration: 2,
           }}>
           <Switch>
             <Route exact path="/" component={HomeComponent} />

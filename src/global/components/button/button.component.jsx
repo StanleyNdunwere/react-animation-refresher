@@ -1,5 +1,6 @@
 import React from "react";
 import "../../../global/components/button/button.css";
+import { motion } from "framer-motion";
 
 export default function ButtonComponent(props) {
   const { content } = { ...props };
@@ -13,8 +14,17 @@ export default function ButtonComponent(props) {
   };
 
   return (
-    <div className="button" onClick={() => handleClick(props)}>
+    <motion.div
+      whileHover={{
+        scale: 1.4,
+        boxShadow: "0 0 10px white",
+        textShadow: "0 0 10px white",
+        transition: { delay: 0, type: "spring", stiffness: 100 },
+      }}
+      className="button"
+      onClick={() => handleClick(props)}
+    >
       <span>{content}</span>
-    </div>
+    </motion.div>
   );
 }

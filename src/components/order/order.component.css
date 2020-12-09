@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&display=swap");
 
 .order-content {
+  margin: auto;
   margin-top: 7rem;
   text-align: center;
+  width: fit-content;
 }
 
 .order-content h3 {

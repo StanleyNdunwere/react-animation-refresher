@@ -1,17 +1,18 @@
 
 import './App.css';
 import HomeComponent from './components/home/home.component';
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, useLocation } from 'react-router-dom'
 import BaseComponent from './components/base/base.component';
 import ToppingsComponent from './components/toppings/toppings.component';
 import OrderComponent from './components/order/order.component';
 import { OrderProvider } from './contexts/order_context/order.context';
 import { useReducer } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 function App() {
 
-
+  const location = useLocation();
+  console.log(location.pathname);
   let initialState = {
     option: '',
     toppings: []
@@ -30,12 +31,31 @@ function App() {
   }
 
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  const logoVariants = {
+    init: {
+      rotateY: 0,
+      // rotateX: 0,
+      // rotateZ: 0,
+    },
+    anim: {
+      rotateY: 360,
+      // rotateX: 360,
+      // rotateZ:360,
+      transition: { duration: 2 }
+    }
+  }
   return (
     <OrderProvider value={[state, dispatch]} >
       <div className="App">
         <header className="App-header">
           <div className="logo-text-container">
-            <div className="header-image"></div>
+            <motion.div
+              drag dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+              variants={logoVariants}
+              initial="init"
+              animate="anim"
+              className="header-image"></motion.div>
             <div className="header-text">
               <motion.h1
                 initial={{ y: -200 }}
@@ -62,15 +82,17 @@ function App() {
             delay: 0,
             duration: 2,
           }}>
-          <Switch>
+          {/* <AnimatePresence> */}
+          <Switch >
             <Route exact path="/" component={HomeComponent} />
             <Route exact path="/base" component={BaseComponent} />
             <Route exact path="/toppings" component={ToppingsComponent} />
             <Route exact path="/order" component={OrderComponent} />
           </Switch>
+          {/* </AnimatePresence> */}
         </motion.div>
       </div>
-    </ OrderProvider>
+    </ OrderProvider >
   );
 }
 

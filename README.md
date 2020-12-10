@@ -1,3 +1,11 @@
+#Project React Animation
+
+A small simple project consisting of basic react animations leveraging the Framer Motion library. Other modern react paradigms demonstrated in this simple project are exclusive use of functional components, react hooks and the context api for state management.
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

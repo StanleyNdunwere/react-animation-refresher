@@ -1,4 +1,4 @@
-#Project React Animation
+# Project React Animation
 
 A small simple project consisting of basic react animations leveraging the Framer Motion library. Other modern react paradigms demonstrated in this simple project are exclusive use of functional components, react hooks and the context api for state management.
 
